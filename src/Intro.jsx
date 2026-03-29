@@ -1,21 +1,30 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef } from "react";
 import { assetUrl } from "./assetUrl.js";
 import { T } from "./strings";
 
-export function Intro({ onEntered, onStartMusic }) {
+const INTRO_FADE_MS = 800;
+
+export function Intro({ onEntered, onStartMusic, onPreloadStart, onExitComplete }) {
   const [playing, setPlaying] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const exitTimerRef = useRef(null);
 
   const finish = useCallback(() => {
+    /** 1) Mostrar landing debajo (mismo frame, sin hueco blanco). */
+    onEntered?.();
+    /** 2) Fundido del intro encima; no usar display:none hasta desmontar. */
     setHidden(true);
-    setTimeout(() => {
-      onEntered?.();
-    }, 800);
-  }, [onEntered]);
+    if (exitTimerRef.current) clearTimeout(exitTimerRef.current);
+    exitTimerRef.current = window.setTimeout(() => {
+      exitTimerRef.current = null;
+      onExitComplete?.();
+    }, INTRO_FADE_MS + 50);
+  }, [onEntered, onExitComplete]);
 
   const handleEnter = useCallback(
     (videoEl) => {
       if (playing) return;
+      onPreloadStart?.();
       setPlaying(true);
       onStartMusic?.();
       const v = videoEl;
@@ -37,13 +46,12 @@ export function Intro({ onEntered, onStartMusic }) {
       v.addEventListener("error", onEnd);
       const forceTimer = setTimeout(onEnd, 45000);
     },
-    [playing, onStartMusic, finish]
+    [playing, onStartMusic, onPreloadStart, finish]
   );
 
   return (
     <div
       className={`intro-overlay ${playing ? "is-playing" : ""} ${hidden ? "is-hidden" : ""}`}
-      style={hidden ? { display: "none" } : undefined}
       role="button"
       tabIndex={0}
       aria-label="Entrar"

@@ -62,6 +62,17 @@ a {
   border: 0;
 }
 
+/* Landing precargado detrás del intro (mismo clic: animación carta + carga web) */
+.landing-preload-hidden {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 /* Intro */
 .intro-overlay {
   position: fixed;
@@ -168,7 +179,8 @@ a {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: #fff;
+  /* Mismo tono que el poster del vídeo: evita flash blanco al cruzar con el intro */
+  background: #141210;
 }
 
 .hero-video-wrap {
@@ -435,6 +447,14 @@ a {
   text-align: center;
 }
 
+.welcome-block .welcome-lead {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  font-style: italic;
+  color: rgba(80, 60, 40, 0.85);
+  margin: 0 0 0.35rem;
+}
+
 .welcome-block h2 {
   font-size: clamp(2.5rem, 8vw, 5rem);
   color: var(--sage-dark);
@@ -469,10 +489,6 @@ a {
   .marquee {
     gap: 1rem;
   }
-}
-
-.marquee:hover {
-  animation-play-state: paused;
 }
 
 @keyframes marquee {
@@ -627,12 +643,22 @@ a {
   margin-bottom: 0.5rem;
 }
 
+.program .program-intro {
+  text-align: center;
+  max-width: 36rem;
+  margin: 0 auto 1rem;
+  padding: 0 1rem;
+  line-height: 1.65;
+  font-size: 1.05rem;
+  color: rgba(80, 60, 40, 0.9);
+}
+
 .program .prog-date {
   text-align: center;
   color: var(--gold);
   font-weight: 500;
   letter-spacing: 0.05em;
-  margin-bottom: 3rem;
+  margin-bottom: 0;
 }
 
 .timeline {

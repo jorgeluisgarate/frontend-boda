@@ -1,37 +1,42 @@
 /** Textos solo en español */
 export const T = {
   introHint: "Toca para entrar",
-  heroSubtitle: "Nos casamos",
+  heroSubtitle: "Dicen que uno se casa una sola vez en la vida…",
   heroRsvp: "RSVP",
   countdownTitle: "Cuenta Atrás",
   countdownDays: "Días",
   countdownHours: "Horas",
   countdownMinutes: "Minutos",
-  welcomeTitle: "¡Nos volvemos a casar! 💍",
+  welcomeLead: "Pero eso es para aburridos, así que:",
+  welcomeTitle: "¡nos volvemos a casar!",
   welcomeParagraphs: [
-    "Ya dimos el primer 'sí' en Venezuela, y ahora queremos compartir nuestra boda civil aquí en Chile con las personas más especiales de nuestro día a día.",
-    "Los invitamos con mucho cariño a celebrar este gran momento con nosotros en La Florida, Región Metropolitana. ¡Estamos deseando que nos acompañen en esta segunda parte de nuestra historia!",
+    "Porque nos hicieron mucha falta en Venezuela, ahora queremos compartir aquí con ustedes que son parte de nuestra historia.",
+    "Los invitamos con mucho cariño a una íntima celebración este 30 de abril.",
   ],
-  eventsTitle: "El Lugar",
-  eventsSubtitle: "Donde celebramos",
+  eventsTitle: "El lugar",
+  eventsSubtitle: "Salón Gourmet · La Florida",
+  venueName: "Colombia 7664 · Salón Gourmet",
+  venueAddress: "La Florida, Región Metropolitana, Chile",
   openMaps: "Abrir en Maps",
-  programTitle: "Programa del Día",
-  programStart: "Inicio de la celebración",
-  programFinish: "Fin de fiesta",
-  dressTitle: "Código de vestimenta: Semi-formal",
+  programTitle: "Programa del día",
+  programIntro:
+    "Pide la tarde en el trabajo y llega a tiempo: seremos muy puntuales en la hora de inicio y fin, y no queremos perder ni un segundo.",
+  dressTitle: "Código de vestimenta",
   dressBody:
-    "No buscamos una fiesta estructurada, rígida ni llena de lujos. Nuestro mayor deseo es simplemente compartir, conversar y disfrutar cómodamente con ustedes. Por eso, los invitamos a venir semi-formales, pero sobre todo, ¡listos para relajarse y pasar un momento increíble juntos!",
+    "Sin complicaciones: ponte lindo para la foto. No es nada formal; solo queremos reunirnos a celebrar nuestro amor.",
   giftsTitle: "Regalos",
   giftsText:
-    "Vuestra presencia es nuestro mayor regalo. Si deseáis hacernos un obsequio, aquí tenéis los datos bancarios:",
-  giftsAccount1: "CaixaBank – Andrea Morales",
-  giftsAccount1Details: `IBAN: ES00 0000 0000 0000 0000 0000
-BIC/SWIFT: XXXXXXXXXX`,
-  giftsAccount2: "Banco Santander – Pedro Fernández",
-  giftsAccount2Details: `IBAN: ES00 0000 0000 0000 0000 0000
-BIC/SWIFT: XXXXXXXXXX`,
+    "Si algo deseas regalar para nuestra anhelada luna de miel, sabremos aprovecharlo.",
+  giftsTransferHeading: "Datos de transferencia",
+  giftsAccount1: "Jorge Luis Garate Bascunan",
+  giftsAccount1Details: `RUT: 18.076.821-1
+Correo: jorgeluis.garate@gmail.com
+Banco Consorcio
+Cuenta Vista
+4011250342`,
   rsvpTitle: "RSVP",
-  rsvpSubtitle: "Confirma tu asistencia",
+  rsvpSubtitle:
+    "Confirma tu asistencia antes del 15 de abril. Por favor, no vengas si estás enfermo: cuidamos a nuestra bebé.",
   rsvpPrincipal: "Nombre invitado principal *",
   rsvpNamePh: "Nombre",
   rsvpCompanion: "Nombre acompañante/s (solo completar si fuiste invitado con acompañante)",

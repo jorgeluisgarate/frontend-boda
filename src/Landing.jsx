@@ -1,14 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { T } from "./strings";
 import { assetUrl } from "./assetUrl.js";
-import { programRows, galleryA } from "./data.js";
+import { galleryA } from "./data.js";
 import { calcCountdownParts, countdownUntilLabel, formatWeddingDateShort } from "./utils.js";
 import { useReveal } from "./useReveal.js";
-
-const programLabels = {
-  start: () => T.programStart,
-  finish: () => T.programFinish,
-};
+import { HERO_VIDEO_PATH, HERO_VIDEO_POSTER_PATH } from "./assetConstants.js";
 
 function Countdown() {
   const [parts, setParts] = useState(() => calcCountdownParts());
@@ -38,12 +34,49 @@ function Countdown() {
 
 export function Landing() {
   const revealRef = useReveal();
+  const heroVideoRef = useRef(null);
+  const giftsVideoRef = useRef(null);
+  const heroSrc = assetUrl(HERO_VIDEO_PATH);
+  const heroPoster = assetUrl(HERO_VIDEO_POSTER_PATH);
+
+  useEffect(() => {
+    heroVideoRef.current?.load();
+    giftsVideoRef.current?.load();
+  }, []);
+
+  useEffect(() => {
+    const abs = new URL(heroSrc, window.location.href).href;
+    if ([...document.querySelectorAll('link[rel="preload"]')].some((l) => l.href === abs)) return;
+    const link = document.createElement("link");
+    link.rel = "preload";
+    link.as = "video";
+    link.href = heroSrc;
+    document.head.appendChild(link);
+  }, [heroSrc]);
 
   return (
     <main ref={revealRef}>
       <section className="hero" id="top">
-        <div className="hero-video-wrap">
-          <video autoPlay muted loop playsInline src={assetUrl("/assets/hero-video-BkP1eoiB.mp4")} />
+        <div
+          className="hero-video-wrap"
+          style={{
+            backgroundColor: "#141210",
+            backgroundImage: `url(${heroPoster})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
+          <video
+            ref={heroVideoRef}
+            className="hero-bg-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster={heroPoster}
+            src={heroSrc}
+          />
         </div>
         <div className="hero-inner">
           <p className="hero-subtitle reveal">{T.heroSubtitle}</p>
@@ -76,6 +109,7 @@ export function Landing() {
 
       <section id="welcome" className="section-padding pb-0 bg-ivory">
         <div className="welcome-block reveal">
+          <p className="welcome-lead">{T.welcomeLead}</p>
           <h2>{T.welcomeTitle}</h2>
           {T.welcomeParagraphs.map((paragraph, i) => (
             <p key={i}>{paragraph}</p>
@@ -85,7 +119,7 @@ export function Landing() {
           <div className="marquee">
             {[...galleryA, ...galleryA].map((g, i) => (
               <div key={i} className="marquee-cell">
-                <img src={g.src} alt="" style={{ objectPosition: g.pos }} />
+                <img src={g.src} alt="" loading={i < 4 ? "eager" : "lazy"} decoding="async" style={{ objectPosition: g.pos }} />
               </div>
             ))}
           </div>
@@ -105,15 +139,14 @@ export function Landing() {
           <h2>{T.eventsTitle}</h2>
           <p className="subtitle mb-8">{T.eventsSubtitle}</p>
           <div className="card-white">
-            <h3 className="venue-name">Salón de eventos · Colombia 7664</h3>
+            <h3 className="venue-name">{T.venueName}</h3>
             <div className="venue-meta">
               <span className="font-body italic opacity-80">{formatWeddingDateShort()}</span>
               <span className="dot">·</span>
               <span className="font-display text-2xl">19:00 – 00:00</span>
             </div>
             <div className="venue-meta flex-col gap-1">
-              <span>Colombia 7664, La Florida</span>
-              <span className="text-sm opacity-70">Región Metropolitana, Chile</span>
+              <span>{T.venueAddress}</span>
             </div>
             <iframe
               className="map-frame"
@@ -145,33 +178,8 @@ export function Landing() {
         <div className="section-bg-video-scrim" aria-hidden />
         <div className="reveal section-bg-video-inner" style={{ maxWidth: "42rem", margin: "0 auto" }}>
           <h2>{T.programTitle}</h2>
+          <p className="program-intro">{T.programIntro}</p>
           <p className="prog-date">{formatWeddingDateShort()}</p>
-          <div className="timeline">
-            {programRows.map((row) => {
-              const label = programLabels[row.key]();
-              const left = row.side === "left";
-              return (
-                <div key={row.time + row.key} className="timeline-row">
-                  <div className="left">
-                    {left && (
-                      <>
-                        <div className="timeline-time">{row.time}</div>
-                        <div className="timeline-label">{label}</div>
-                      </>
-                    )}
-                  </div>
-                  <div className="right">
-                    {!left && (
-                      <>
-                        <div className="timeline-time">{row.time}</div>
-                        <div className="timeline-label">{label}</div>
-                      </>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
         </div>
       </section>
 
@@ -179,7 +187,7 @@ export function Landing() {
         <div className="overlay-content overlay-content--dress">
           <div className="dress-grid-container">
             <div className="dress-photo-col">
-              <img className="dress-photo" src={assetUrl("/assets/gallery-1.jpg")} alt="" />
+              <img className="dress-photo" src={assetUrl("/assets/gallery-1.jpg")} alt="" loading="lazy" />
             </div>
             <div className="glass-card glass-card--dress-col">
               <h2>{T.dressTitle}</h2>
@@ -191,29 +199,30 @@ export function Landing() {
 
       <section className="overlay-section reveal">
         <video
+          ref={giftsVideoRef}
           className="overlay-bg"
           autoPlay
           muted
           loop
           playsInline
-          src={assetUrl("/assets/hero-video-BkP1eoiB.mp4")}
+          preload="auto"
+          poster={heroPoster}
+          src={heroSrc}
         />
         <div className="overlay-content">
           <div className="gifts-card">
             <h2 className="font-display text-4xl md:text-7xl text-sage-dark mb-6">{T.giftsTitle}</h2>
             <p className="lead">{T.giftsText}</p>
+            <h3 className="gifts-transfer-heading font-body text-sm uppercase tracking-widest text-sage-dark mt-8 mb-4">
+              {T.giftsTransferHeading}
+            </h3>
             <div className="bank-box">
               <h4>{T.giftsAccount1}</h4>
               <p className="details">{T.giftsAccount1Details}</p>
             </div>
-            <div className="bank-box">
-              <h4>{T.giftsAccount2}</h4>
-              <p className="details">{T.giftsAccount2Details}</p>
-            </div>
           </div>
         </div>
       </section>
-
     </main>
   );
 }

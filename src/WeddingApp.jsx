@@ -5,7 +5,9 @@ import { RsvpSection } from "./RsvpSection.jsx";
 import { assetUrl } from "./assetUrl.js";
 
 export function WeddingApp() {
+  const [preloadStarted, setPreloadStarted] = useState(false);
   const [entered, setEntered] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
   const [confirmPhase, setConfirmPhase] = useState("form");
   const [musicMuted, setMusicMuted] = useState(true);
   const audioRef = useRef(null);
@@ -34,12 +36,23 @@ export function WeddingApp() {
         <source src={assetUrl("/assets/music.mp3")} type="audio/mpeg" />
       </audio>
 
-      {!entered && <Intro onEntered={() => setEntered(true)} onStartMusic={startMusic} />}
+      {showIntro && (
+        <Intro
+          onEntered={() => setEntered(true)}
+          onStartMusic={startMusic}
+          onPreloadStart={() => setPreloadStarted(true)}
+          onExitComplete={() => setShowIntro(false)}
+        />
+      )}
+
+      {(preloadStarted || entered) && (
+        <div className={entered ? undefined : "landing-preload-hidden"}>
+          <Landing />
+        </div>
+      )}
 
       {entered && (
         <>
-          <Landing />
-
           <RsvpSection onPhaseChange={setConfirmPhase} />
 
           <button
