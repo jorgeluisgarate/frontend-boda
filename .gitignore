@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+.DS_Store
+
+# >100 MB: GitHub rechaza el push; súbelo al despliegue o usa Git LFS
+public/assets/hero-video-BkP1eoiB.mp4

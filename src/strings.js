@@ -1,0 +1,62 @@
+/** Textos solo en español */
+export const T = {
+  introHint: "Toca para entrar",
+  heroSubtitle: "Nos casamos",
+  heroRsvp: "RSVP",
+  countdownTitle: "Cuenta Atrás",
+  countdownDays: "Días",
+  countdownHours: "Horas",
+  countdownMinutes: "Minutos",
+  welcomeTitle: "¡Nos volvemos a casar! 💍",
+  welcomeParagraphs: [
+    "Ya dimos el primer 'sí' en Venezuela, y ahora queremos compartir nuestra boda civil aquí en Chile con las personas más especiales de nuestro día a día.",
+    "Los invitamos con mucho cariño a celebrar este gran momento con nosotros en La Florida, Región Metropolitana. ¡Estamos deseando que nos acompañen en esta segunda parte de nuestra historia!",
+  ],
+  eventsTitle: "El Lugar",
+  eventsSubtitle: "Donde celebramos",
+  openMaps: "Abrir en Maps",
+  programTitle: "Programa del Día",
+  programStart: "Inicio de la celebración",
+  programFinish: "Fin de fiesta",
+  dressTitle: "Código de vestimenta: Semi-formal",
+  dressBody:
+    "No buscamos una fiesta estructurada, rígida ni llena de lujos. Nuestro mayor deseo es simplemente compartir, conversar y disfrutar cómodamente con ustedes. Por eso, los invitamos a venir semi-formales, pero sobre todo, ¡listos para relajarse y pasar un momento increíble juntos!",
+  giftsTitle: "Regalos",
+  giftsText:
+    "Vuestra presencia es nuestro mayor regalo. Si deseáis hacernos un obsequio, aquí tenéis los datos bancarios:",
+  giftsAccount1: "CaixaBank – Andrea Morales",
+  giftsAccount1Details: `IBAN: ES00 0000 0000 0000 0000 0000
+BIC/SWIFT: XXXXXXXXXX`,
+  giftsAccount2: "Banco Santander – Pedro Fernández",
+  giftsAccount2Details: `IBAN: ES00 0000 0000 0000 0000 0000
+BIC/SWIFT: XXXXXXXXXX`,
+  rsvpTitle: "RSVP",
+  rsvpSubtitle: "Confirma tu asistencia",
+  rsvpPrincipal: "Nombre invitado principal *",
+  rsvpNamePh: "Nombre",
+  rsvpCompanion: "Nombre acompañante/s (solo completar si fuiste invitado con acompañante)",
+  rsvpChildrenNames: "Nombre niño/s (completar solo si vienes con niños)",
+  rsvpChildrenAges: "Edad de niños",
+  rsvpChildrenAgesPh: "Si vienes con niños, indica sus edades",
+  rsvpAttendance: "Confirmación asistencia *",
+  rsvpAttendYes: "Sí, asistiré",
+  rsvpAttendNo: "No podré asistir",
+  rsvpMessage: "Mensaje para los novios",
+  rsvpMessagePh: "Mensaje",
+  rsvpSending: "Enviando...",
+  rsvpSendConfirm: "Enviar confirmación",
+  rsvpError: "No se pudo enviar tu respuesta. Inténtalo de nuevo.",
+  rsvpErrorNoApi:
+    "No hay conexión con el servidor de la invitación. En tu PC, en la carpeta del proyecto ejecuta: npm run dev (debe levantar el API en el puerto 3001 y la web en el 5173).",
+  confirmThankYou: "¡Gracias!",
+  confirmCantMake:
+    "Sentimos que no puedas venir. Te tendremos presente en nuestro día especial.",
+  confirmThankResponse: "¡Gracias por tu respuesta!",
+  confirmExcited: "Estamos muy emocionados de celebrar contigo.",
+  confirmThankPart: "Gracias por ser parte de nuestra historia.",
+  confirmLookForward: "Esperamos verte el:",
+  confirmAddCalendar: "Añadir al calendario",
+  confirmPlansChange:
+    "Si tus planes cambian y ya no puedes asistir, por favor háznoslo saber lo antes posible.",
+  skipVideo: "Saltar vídeo",
+};
